@@ -24,7 +24,8 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
-        'type'
+        'type',
+        'avatar',
     ];
 
     /**
@@ -52,5 +53,15 @@ class User extends Authenticatable implements FilamentUser
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function companyProfile()
+    {
+        return $this->hasOne(CompanyProfile::class);
+    }
+
+    public function candidateProfile()
+    {
+        return $this->hasOne(CandidateProfile::class);
     }
 }

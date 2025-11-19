@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('job_id')
+                ->constrained('jobs')
+                ->cascadeOnDelete();
+            $table->foreignId('candidate_profile_id')
+                ->constrained('candidate_profiles')
+                ->cascadeOnDelete();
+            $table->string('status')->nullable();
+            $table->text('mensagem')->nullable();
+            $table->dateTime('schedule')->nullable();
             $table->timestamps();
+            $table->unique(['job_id', 'candidate_profile_id']);
         });
     }
 

@@ -15,6 +15,7 @@ return new class extends Migration
             //
             $table->string('type')->nullable(); //admin, company, candidate
             $table->boolean('onboarding_completed')->default(false);
+            $table->string('avatar')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
             //
             $table->dropColumn('type');
             $table->dropColumn('onboarding_completed');
+            $table->dropColumn('avatar');
         });
     }
 };

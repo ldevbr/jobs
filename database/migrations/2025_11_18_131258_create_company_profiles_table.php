@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('company_profiles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('cnpj')->nullable();
+            $table->string('nome_fantasia')->nullable();
+            $table->string('razao_social')->nullable();
+            $table->string('cep')->nullable();
+            $table->string('rua')->nullable();
+            $table->integer('numero')->nullable();
+            $table->string('complemento')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('telefone')->nullable();
+            $table->longText('descricao')->nullable();
+            $table->boolean('terms_accepted')->default(false);
             $table->timestamps();
         });
     }
