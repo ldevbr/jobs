@@ -2,11 +2,13 @@
 
 namespace App\Providers\Filament;
 
+use App\Livewire\Auth\Register as AuthRegister;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Illuminate\Support\Facades\Route;
 use Filament\Http\Middleware\Authenticate;
 use App\Providers\Filament\Pages\Auth\Register;
 use Illuminate\Session\Middleware\StartSession;
@@ -29,6 +31,7 @@ class PainelPanelProvider extends PanelProvider
             ->path('painel')
             ->login()
             ->registration(Register::class)
+            ->viteTheme('resources/css/filament/painel/theme.css')
             ->colors([
                 'primary' => Color::Amber,
             ])

@@ -1,6 +1,8 @@
 @props([
     'title' => null,
     'subtitle' => null,
+    'header' => 'Sign in to your account',
+    'subheader' => 'Start your demo version',
 ])
 
 <!DOCTYPE html>
@@ -14,49 +16,32 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @filamentStyles
+    @livewireStyles
 
-    @stack('head')
 </head>
 
-<body class="min-h-screen bg-slate-100 text-slate-900 antialiased flex flex-col">
+<body>
 
-    <div class="flex-1 flex items-center justify-center px-4">
-        <div class="w-full max-w-md">
-            {{-- Logo / heading --}}
-            <div class="mb-6 text-center">
-                <a href="{{ url('/') }}" class="inline-flex items-center justify-center gap-2 mb-2">
-                    {{-- Logo aqui --}}
-                    <span class="text-xl font-semibold tracking-tight">
-                        {{ config('app.name') }}
-                    </span>
-                </a>
-
-                @if ($title)
-                    <h1 class="text-lg font-semibold">{{ $title }}</h1>
-                @endif
-
-                @if ($subtitle)
-                    <p class="mt-1 text-xs text-slate-500">{{ $subtitle }}</p>
-                @endif
-            </div>
-
-            {{-- Card --}}
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
-                {{ $slot }}
-            </div>
-
-            {{-- Links auxiliares --}}
-            <div class="mt-4 text-center text-xs text-slate-500">
-                @yield('auth-footer')
+    <section class="relative pt-16 pb-0 md:py-32 bg-white"
+        style="background-image: url('flex-ui-assets/elements/pattern-white.svg'); background-position: center;">
+        <div class="container px-4 mx-auto mb-16">
+            <div class="w-full md:w-3/5 lg:w-1/2">
+                <div class="max-w-sm mx-auto">
+                    <div class="mb-6 text-center">
+                        <a class="inline-block mb-6" href="#">
+                            <img class="h-16" src="https://placehold.co/65" alt="">
+                        </a>
+                        <h3 class="mb-4 text-2xl md:text-3xl font-bold">{{ $header }}</h3>
+                        <p class="text-lg text-coolGray-500 font-medium">{{ $subheader }}</p>
+                    </div>
+                    {{ $slot }}
+                </div>
             </div>
         </div>
-    </div>
-
-    <footer class="py-3 text-center text-[11px] text-slate-400">
-        &copy; {{ date('Y') }} {{ config('app.name') }}. Feito com ♥ para recrutadores e candidatos.
-    </footer>
-
-    @stack('scripts')
+    </section>
+    @filamentScripts
+    @livewireScripts
 </body>
 
 </html>
